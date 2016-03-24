@@ -12,9 +12,6 @@ if __name__ == '__main__':
         # 動画ストリームからフレームを取得
         ret, frame = cap.read()
  
-        # 結果を保存するための変数を用意しておく。
-        img_result = frame
-
         # HoG特徴量の計算
         hog = cv2.HOGDescriptor()
 
