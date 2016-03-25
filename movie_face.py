@@ -14,6 +14,11 @@ if __name__ == '__main__':
     # カメラからキャプチャー
     cap = cv2.VideoCapture(0)
  
+    # 画像サイズの指定
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH,320)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,240)
+    cap.set(cv2.CAP_PROP_FPS,10)
+
     while(True):
  
         # 動画ストリームからフレームを取得
