@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+
 import cv2
 import numpy as np
 import sys
@@ -6,17 +7,17 @@ import sys
 if __name__ == '__main__':
     param = sys.argv
 
-    # ‰æ‘œ‚Ì“Ç‚İ‚İ
+    # ç”»åƒã®èª­ã¿è¾¼ã¿
     im = cv2.imread(param[1])
 
-    # ‰æ‘œ‚ÌƒTƒCƒY‚ğæ“¾
+    # ç”»åƒã®ã‚µã‚¤ã‚ºã‚’å–å¾—
     hight = im.shape[0]
     width = im.shape[1]
 
-    # ‰æ‘œƒTƒCƒY‚Ì•ÏX
-    half_size = cv2.resize(im,(width/2,hight/2))
+    # ç”»åƒã‚µã‚¤ã‚ºã®å¤‰æ›´
+    resize_im = cv2.resize(im,(width/int(param[2]),hight/int(param[2])))
 
-    # ‰æ‘œ‚Ì•\¦
-    cv2.imshow("Show Image", half_size)
+    # ç”»åƒã®è¡¨ç¤º
+    cv2.imshow("Show Image", resize_im)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
