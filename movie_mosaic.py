@@ -8,17 +8,21 @@ import os
  
 if __name__ == '__main__':
 
+    # カメラからキャプチャー
+    cap = cv2.VideoCapture(0)
+
+    # カメラスペック情報の取得
+    frame_width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+    frame_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+
+    # 画像サイズの指定
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH,frame_width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,frame_height)
+    cap.set(cv2.CAP_PROP_FPS,30)
+
     # 顔判定で使うxmlファイルを指定する。
     cascade_path =  os.path.dirname(os.path.abspath('__file__')) + "/haarcascades/haarcascade_frontalface_alt.xml"
     cascade = cv2.CascadeClassifier(cascade_path)
-
-    # カメラからキャプチャー
-    cap = cv2.VideoCapture(0)
- 
-    # 画像サイズの指定
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH,320)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,240)
-    cap.set(cv2.CAP_PROP_FPS,10)
 
     while(True):
  
@@ -36,8 +40,7 @@ if __name__ == '__main__':
         minSize で顔判定する際の最小の四角の大きさを指定できる。
         (小さい値を指定し過ぎると顔っぽい小さなシミのような部分も判定されてしまう。)
         """
-        #faces  =  cascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=1, minSize=(100, 100))
-        faces  =  cascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=1, minSize=(50, 50))
+        faces  =  cascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=1, minSize=(100, 100))
 
         # 顔があった場合
         if len(faces) > 0:

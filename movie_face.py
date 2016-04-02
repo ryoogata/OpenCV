@@ -7,17 +7,21 @@ import os
  
 if __name__ == '__main__':
 
+    # カメラからキャプチャー
+    cap = cv2.VideoCapture(0)
+
+    # カメラスペック情報の取得
+    frame_width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+    frame_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+
+    # 画像サイズの指定
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH,frame_width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,frame_height)
+    cap.set(cv2.CAP_PROP_FPS,30)
+
     # 顔判定で使うxmlファイルを指定する。
     cascade_path =  os.path.dirname(os.path.abspath('__file__')) + "/haarcascades/haarcascade_frontalface_alt.xml"
     cascade = cv2.CascadeClassifier(cascade_path)
-
-    # カメラからキャプチャー
-    cap = cv2.VideoCapture(0)
- 
-    # 画像サイズの指定
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH,320)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,240)
-    cap.set(cv2.CAP_PROP_FPS,10)
 
     while(True):
  

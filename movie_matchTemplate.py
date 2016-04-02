@@ -3,8 +3,18 @@ import cv2
 import numpy as np
 
 if __name__ == '__main__':
+
     # カメラからキャプチャー
     cap = cv2.VideoCapture(0)
+
+    # カメラスペック情報の取得
+    frame_width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+    frame_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+
+    # 画像サイズの指定
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH,frame_width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,frame_height)
+    cap.set(cv2.CAP_PROP_FPS,30)
 
     template = cv2.imread('photo/cap_empty.png',0)
     w, h = template.shape[::-1]

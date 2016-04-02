@@ -7,14 +7,18 @@ if __name__ == '__main__':
     # カメラからキャプチャー
     cap = cv2.VideoCapture(0)
 
+    # カメラスペック情報の取得
+    frame_width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+    frame_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+
     # 画像サイズの指定
-    #cap.set(cv2.CAP_PROP_FRAME_WIDTH,320)
-    #cap.set(cv2.CAP_PROP_FRAME_HEIGHT,240)
-    #cap.set(cv2.CAP_PROP_FPS,30)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH,frame_width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,frame_height)
+    cap.set(cv2.CAP_PROP_FPS,30)
 
     # Define the codec and create VideoWriter object
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    out = cv2.VideoWriter('output.mp4',fourcc, 20.0, (640,480))
+    out = cv2.VideoWriter('output.mp4',fourcc, 30.0, (int(frame_width),int(frame_height)))
 
     while(True):
  
